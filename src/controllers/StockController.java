@@ -24,6 +24,10 @@ public class StockController {
         System.out.println("What would you like to do?");
         System.out.println("1 - View all stock");
         System.out.println("2 - View stock information");
+        System.out.println("3 - Amend current stock");
+        System.out.println("4 - Add a new stock option");
+        System.out.println("5 - Remove a stock option");
+
         int input = Integer.parseInt(scn.nextLine());
 
         switch (input) {
@@ -35,6 +39,13 @@ public class StockController {
             case 2:
                 System.out.println("Please wait.");
                 printStockInfoMenu();
+            case 3:
+                System.out.println("This option is still under construction, please try again later.");
+            case 4:
+                System.out.println("This option is still under construction, please try again later.");
+            case 5:
+                System.out.println("This option is still under construction, please try again later.");
+
         }
 
 
