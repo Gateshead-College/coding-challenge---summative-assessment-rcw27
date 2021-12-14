@@ -1,10 +1,13 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Stock {
 
 
+    public String price;
+    public String manufacturer;
+    public int productID;
+    public int QuantityStocked;
 }
+
+
