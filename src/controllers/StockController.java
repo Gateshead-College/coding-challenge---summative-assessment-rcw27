@@ -81,23 +81,37 @@ public class StockController {
     }
 
     private void showPhoneA() {
+        productID = 456;
+        manufacturer = "Apple";
+        price = 780.50;
+        quantityStocked = 12;
+
         System.out.println("Loading information for iPhone 13");
         System.out.println();
-        System.out.println("ID: " + productID + "Manufacturer: " + manufacturer + "Product ID: " + productID + "Quantity in stock: " + quantityStocked);
+        System.out.println("ID: " + productID + "  Manufacturer: " + manufacturer + "  Price in GBP: " + price + "  Quantity in stock: " + quantityStocked);
 
     }
 
     private void showPhoneB() {
+        productID = 448;
+        manufacturer = "Apple";
+        price = 389.76;
+        quantityStocked = 8;
+
         System.out.println("Loading information for iPhone SE");
         System.out.println();
-        System.out.println("ID: " + productID + "Manufacturer: " + manufacturer + "Product ID: " + productID + "Quantity in stock: " + quantityStocked);
+        System.out.println("ID: " + productID + "  Manufacturer: " + manufacturer + "  Price in GBP: " + price + "  Quantity in stock: " + quantityStocked);
 
     }
 
     private void showPhoneC() {
+        productID = 452;
+        manufacturer = "Samsung";
+        price = 714.99;
+        quantityStocked = 10;
         System.out.println("Loading information for Galaxy S21");
         System.out.println();
-        System.out.println("ID: " + productID + "Manufacturer: " + manufacturer + "Product ID: " + productID + "Quantity in stock: " + quantityStocked);
+        System.out.println("ID: " + productID + "  Manufacturer: " + manufacturer + "  Price in GBP: " + price + "  Quantity in stock: " + quantityStocked);
 
     }
 
