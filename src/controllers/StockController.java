@@ -19,9 +19,7 @@ public class StockController {
         stockList.add("iPhone 13");
         stockList.add("iPhone SE");
         stockList.add("Samsung S21");
-        stockList.add("Samsung A52");
-        stockList.add("Oppo X3 Neo");
-        stockList.add("Oppo A54");
+
 
         System.out.println("What would you like to do?");
         System.out.println("1 - View all stock");
@@ -31,6 +29,8 @@ public class StockController {
         switch (input) {
             case 1:
                 System.out.println("Our current stock range is:" + stockList);
+                System.out.println();
+                System.out.println();
                 printMenu();
             case 2:
                 System.out.println("Please wait.");
@@ -81,17 +81,26 @@ public class StockController {
     }
 
     private void showPhoneA() {
-        PhoneA pa = new PhoneA("ID:" + productID + "Manufacturer:" manufacturer + productID + quantityStocked);
+        System.out.println("Loading information for iPhone 13");
+        System.out.println();
+        System.out.println("ID: " + productID + "Manufacturer: " + manufacturer + "Product ID: " + productID + "Quantity in stock: " + quantityStocked);
 
     }
 
     private void showPhoneB() {
-        PhoneB pa = new PhoneB(price + manufacturer + productID + quantityStocked);
+        System.out.println("Loading information for iPhone SE");
+        System.out.println();
+        System.out.println("ID: " + productID + "Manufacturer: " + manufacturer + "Product ID: " + productID + "Quantity in stock: " + quantityStocked);
 
     }
 
     private void showPhoneC() {
-        PhoneC pa = new PhoneC(price + manufacturer + productID + quantityStocked);
+        System.out.println("Loading information for Galaxy S21");
+        System.out.println();
+        System.out.println("ID: " + productID + "Manufacturer: " + manufacturer + "Product ID: " + productID + "Quantity in stock: " + quantityStocked);
 
     }
+
+
 }
+
