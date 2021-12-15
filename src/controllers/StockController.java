@@ -1,25 +1,30 @@
 package controllers;
 
+import models.Stock;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StockController {
 
     Scanner scn = new Scanner(System.in);
+    ArrayList <Stock> phones = new ArrayList();
 
     public static void main(String[] args) {
         StockController m = new StockController();
+        m.Startup();
         m.printMenu();
     }
 
+    private void Startup() {
+
+        phones.add(new Stock(456,"Apple",780.50,12, "iPhone 13"));
+        phones.add(new Stock(452,"Samsung",714.99,10, "Galaxy S21"));
+        phones.add(new Stock(448,"Apple",389.76,8, "iPhone SE"));
+
+    }
 
     private void printMenu() {
-
-        ArrayList stockList = new ArrayList();
-        stockList.add("iPhone 13");
-        stockList.add("iPhone SE");
-        stockList.add("Samsung S21");
-
 
         System.out.println("What would you like to do?");
         System.out.println("1 - View all stock");
@@ -32,10 +37,14 @@ public class StockController {
 
         switch (input) {
             case 1:
-                System.out.println("Our current stock range is:" + stockList);
+                for(Stock s: phones){
+                    System.out.println("Our current stock range is:" + s.phoneName);
+                }
+
                 System.out.println();
                 System.out.println();
                 printMenu();
+
             case 2:
                 System.out.println("Please wait.");
                 printStockInfoMenu();
@@ -54,75 +63,105 @@ public class StockController {
     private void printStockInfoMenu() {
 
         System.out.println("Which item of stock would you like to view info for?");
-        System.out.println("1 - iPhone 13");
-        System.out.println("2 - iPhone SE");
-        System.out.println("3 - Galaxy S21");
+        int Counter = 1;
+        for (Stock s : phones){
+            System.out.println(Counter + " - " + s.phoneName );
+            Counter ++;
+        }
+        int input = Integer.parseInt(scn.nextLine());
+
+        Stock selectedPhone = null;
+
+
+        if (input <= phones.size()){
+            selectedPhone = phones.get(input -1);
+        }
+        else {
+            System.out.println("Invalid Option.Try again");
+            printStockInfoMenu();
+        }
+
+
+        System.out.println("Loading information for  " + selectedPhone.phoneName );
+        System.out.println();
+        System.out.println("ID: " + selectedPhone.productID + "  Manufacturer: " + selectedPhone.manufacturer +
+                "  Price in GBP: " + selectedPhone.price + "  Quantity in stock: " + selectedPhone.quantityStocked);
+
+    }
+
+    private void printStockEditMenu() {
+
+        System.out.println("Which item of stock would you like to edit?");
+            int Counter = 1;
+            for (Stock s : phones){
+                System.out.println(Counter + " - " + s.phoneName );
+                Counter ++;
+            }
+        int input = Integer.parseInt(scn.nextLine());
+
+
+
+            Stock selectedPhone = phones.get(input -1);
+            editPhone(selectedPhone);
+
+    }
+
+    private void editPhone(Stock phone) {
+        System.out.println("What information would you like to update?");
+        System.out.println("1 - Product ID ");
+        System.out.println("2 - Manufacturer ");
+        System.out.println("3 - Price ");
+        System.out.println("4 - Quantity in Stock ");
+        System.out.println("5 - Phone Name ");
+
         int input = Integer.parseInt(scn.nextLine());
 
         switch (input) {
             case 1:
-                showPhoneA();
+                System.out.println("Current ID is set as: " + phone.productID );
+                System.out.println("What would you like to change this to?");
+                int newID = Integer.parseInt(scn.nextLine());
+                System.out.println("Are you sure you want to change the ID from " + phone.productID +
+                        " to this: " + newID);
+                if (scn.nextLine().equalsIgnoreCase("Y")){
+                    phone.productID = newID;
+                    System.out.println("Product ID has now been updated.");
+                }
+                else {
+                    System.out.println("Changes not saved.");
+                }
+
+
+                //recall method showPhoneA(); but edit values before displaying
+
+                /*need a new scanner
+                put input in to the allocated field in Array
+                then redisplay as updated showPhone();  ??
+                 */
                 break;
             case 2:
-                showPhoneB();
+
                 break;
             case 3:
-                showPhoneC();
+
+                break;
+            case 4:
+
                 break;
             default:
-                System.out.println("Invalid stock option. Please try again");
-                printStockInfoMenu();
+                System.out.println("Invalid option. Please try again");
+                printStockEditMenu();
 
         }
-    }
 
-
-    public int productID;
-    public String manufacturer;
-    public Double price;
-    public int quantityStocked;
-
-    public void Phone(int productID, String manufacturer, Double price, int quantityStocked) {
-
-        this.productID = productID;
-        this.manufacturer = manufacturer;
-        this.price = price;
-        this.quantityStocked = quantityStocked;
 
     }
 
-    private void showPhoneA() {
-        productID = 456;
-        manufacturer = "Apple";
-        price = 780.50;
-        quantityStocked = 12;
-
-        System.out.println("Loading information for iPhone 13");
-        System.out.println();
-        System.out.println("ID: " + productID + "  Manufacturer: " + manufacturer + "  Price in GBP: " + price + "  Quantity in stock: " + quantityStocked);
+    private void editPhoneB() {
 
     }
 
-    private void showPhoneB() {
-        productID = 448;
-        manufacturer = "Apple";
-        price = 389.76;
-        quantityStocked = 8;
-
-        System.out.println("Loading information for iPhone SE");
-        System.out.println();
-        System.out.println("ID: " + productID + "  Manufacturer: " + manufacturer + "  Price in GBP: " + price + "  Quantity in stock: " + quantityStocked);
-
-    }
-
-    private void showPhoneC() {
-        productID = 452;
-        manufacturer = "Samsung";
-        price = 714.99;
-        quantityStocked = 10;
-        System.out.println("Loading information for Galaxy S21");
-        System.out.println();
-        System.out.println("ID: " + productID + "  Manufacturer: " + manufacturer + "  Price in GBP: " + price + "  Quantity in stock: " + quantityStocked);
+    private void editPhoneC() {
 
     }
 
