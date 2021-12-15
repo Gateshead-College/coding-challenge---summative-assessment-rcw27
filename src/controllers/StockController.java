@@ -8,12 +8,8 @@ import java.util.Scanner;
 public class StockController {
 
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
 
     Scanner scn = new Scanner(System.in);
@@ -60,12 +56,14 @@ public class StockController {
             case 3:
                 printStockEditMenu();
             case 4:
-                System.out.println(ANSI_RED + "This option is still under construction, please try again later." + ANSI_RESET);
+                System.out.println(ANSI_RED + "This option is still under construction, please try again later."
+                        + ANSI_RESET);
                 System.out.println();
                 System.out.println();
                 printMenu();
             case 5:
-                System.out.println(ANSI_RED + "This option is still under construction, please try again later." + ANSI_RESET);
+                System.out.println(ANSI_RED + "This option is still under construction, please try again later."
+                        + ANSI_RESET);
                 System.out.println();
                 System.out.println();
                 printMenu();
@@ -150,8 +148,8 @@ public class StockController {
                 System.out.println("Current ID is set as: " + ANSI_BLUE + phone.productID + ANSI_RESET);
                 System.out.println("What would you like to change this to?");
                 int newID = Integer.parseInt(scn.nextLine());
-                System.out.println("Are you sure you want to change the ID from " + ANSI_BLUE + phone.productID + ANSI_RESET +
-                        " to this: " + ANSI_CYAN + newID + ANSI_RESET + " Y/N ");
+                System.out.println("Are you sure you want to change the ID from " + ANSI_BLUE + phone.productID
+                        + ANSI_RESET + " to this: " + ANSI_CYAN + newID + ANSI_RESET + " Y/N ");
                 if (scn.nextLine().equalsIgnoreCase("Y")) {
                     phone.productID = newID;
                     System.out.println("Product ID has now been updated.");
@@ -183,7 +181,7 @@ public class StockController {
                 System.out.println();
                 String newManufacturer = (scn.nextLine());
                 System.out.println("Are you sure you want to change the Manufacturer from " + ANSI_BLUE +
-                        phone.manufacturer + ANSI_RESET +" to this: "
+                        phone.manufacturer + ANSI_RESET + " to this: "
                         + ANSI_CYAN + newManufacturer + ANSI_RESET + " Y/N ");
                 System.out.println();
                 if (scn.nextLine().equalsIgnoreCase("Y")) {
@@ -214,8 +212,8 @@ public class StockController {
                 System.out.println("What would you like to change this to?");
                 System.out.println();
                 double newPrice = Double.parseDouble(scn.nextLine());
-                System.out.println("Are you sure you want to change the Price from " + ANSI_BLUE + phone.productID + ANSI_RESET +
-                        " to this: " + ANSI_CYAN + newPrice + ANSI_RESET + " Y/N ");
+                System.out.println("Are you sure you want to change the Price from " + ANSI_BLUE + phone.price +
+                        ANSI_RESET + " to this: " + ANSI_CYAN + newPrice + ANSI_RESET + " Y/N ");
                 System.out.println();
                 if (scn.nextLine().equalsIgnoreCase("Y")) {
                     phone.price = newPrice;
@@ -246,7 +244,7 @@ public class StockController {
                 int newQuantity = Integer.parseInt(scn.nextLine());
                 System.out.println("Are you sure you want to change the quantity in stock from " +
                         ANSI_BLUE + phone.quantityStocked + ANSI_RESET + " to this: "
-                        + ANSI_CYAN + newQuantity + ANSI_RESET+ "Y/N");
+                        + ANSI_CYAN + newQuantity + ANSI_RESET + "Y/N");
                 System.out.println();
                 if (scn.nextLine().equalsIgnoreCase("Y")) {
                     phone.quantityStocked = newQuantity;
@@ -275,7 +273,7 @@ public class StockController {
                 System.out.println();
                 String newName = (scn.nextLine());
                 System.out.println("Are you sure you want to change the phone name from " + ANSI_BLUE + phone.phoneName + ANSI_RESET +
-                        " to this: " + ANSI_CYAN +  newName + ANSI_RESET + " Y/N ");
+                        " to this: " + ANSI_CYAN + newName + ANSI_RESET + " Y/N ");
                 System.out.println();
                 if (scn.nextLine().equalsIgnoreCase("Y")) {
                     phone.phoneName = newName;
