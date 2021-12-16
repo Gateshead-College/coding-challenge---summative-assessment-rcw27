@@ -22,12 +22,12 @@ public class User<Account> {
         this.accounts = new ArrayList<>();
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public String getPassword() {
-        return password;
+    public String getUsername() {return username;
+
+}
+
+    public String getPassword() { return password;
     }
 }
 

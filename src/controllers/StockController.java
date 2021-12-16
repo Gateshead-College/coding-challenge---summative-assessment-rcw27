@@ -4,7 +4,6 @@ import models.Stock;
 import models.User;
 import views.LoginView;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +13,6 @@ public class StockController {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_CYAN = "\u001B[36m";
-    private static User[] users;
 
     Scanner scn = new Scanner(System.in);
     ArrayList<Stock> phones = new ArrayList();
@@ -22,7 +20,6 @@ public class StockController {
     public static void main(String[] args) {
         StockController m = new StockController();
         m.Startup();
-        m.logIn();
         m.createUsers();
     }
 
@@ -37,57 +34,16 @@ public class StockController {
 
 
     private void createUsers() {
-        ArrayList<Object> users = new ArrayList<>();
+        users = new ArrayList<>();
         users.add(new User("Jan", "Lewis", 1234, "JLew1", "JanPass1", true));
         users.add(new User("Fran", "Brewis", 1235, "FBrew1", "FranPass1", false));
         users.add(new User("Stan", "Chewis", 1236, "SChew1", "StanPass1", false));
+        LoginView lv = new LoginView();
+        lv.displayLoginScreen();
 
     }
 
-    private String username = "";
-    private String password = "";
-
-    public void getUsername() {
-        username = new Scanner(System.in).nextLine();
-    }
-
-    public void getPassword() {
-        password = new Scanner(System.in).nextLine();
-    }
-
-    public boolean checkDetails() {
-        for (User u : StockController.users) {
-            if (u.getUsername().equalsIgnoreCase(username) &&
-                    u.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void logIn() {
-        StockController sc = new StockController();
-
-        System.out.println(ANSI_BLUE + "Hi, Welcome to The Phone Shop data system" + ANSI_RESET );
-        System.out.println();
-        System.out.println("Please input your Username to continue");
-        sc.getUsername();
-        System.out.println("Please input your Password to continue");
-        sc.getPassword();
-        if(sc.checkDetails()){
-            System.out.println("Details Accepted");
-            System.out.println();
-            System.out.println();
-        }
-        else {
-            System.out.println("Incorrect Username and/or Password, please try again.");
-            logIn();
-        }
-
-    }
-
-
-    private void printMenu() {
+    void printMenu() {
 
         System.out.println("What would you like to do?");
         System.out.println("1 - View all stock");
@@ -114,11 +70,7 @@ public class StockController {
             case 3:
                 printStockEditMenu();
             case 4:
-                System.out.println(ANSI_RED + "This option is still under construction, please try again later."
-                        + ANSI_RESET);
-                System.out.println();
-                System.out.println();
-                printMenu();
+                printStockRemoveMenu();
             case 5:
                 System.out.println(ANSI_RED + "This option is still under construction, please try again later."
                         + ANSI_RESET);
@@ -361,11 +313,43 @@ public class StockController {
                 printStockEditMenu();
 
         }
+    }
 
+    private void printStockRemoveMenu() {
+
+        System.out.println("Which item of stock would you like to remove?");
+        System.out.println();
+        int Counter = 1;
+        for (Stock s : phones) {
+            System.out.println(Counter + " - " + s.phoneName);
+            Counter++;
+        }
+        int input = Integer.parseInt(scn.nextLine());
+
+        Stock selectedPhone = phones.get(input - 1);
+        removePhone(selectedPhone);
 
     }
 
+    private void removePhone(Stock selectedPhone) {
+        System.out.println("Are you sure you want to delete" + selectedPhone + "from the system? Y/N");
+
+        if (scn.nextLine().equalsIgnoreCase("Y")) {
+            phones.remove(selectedPhone);
+            System.out.println(selectedPhone + "has now been updated.");
+            System.out.println();
+            System.out.println();
+        } else {
+            System.out.println("Changes not saved.");
+            System.out.println();
+            System.out.println();
+        }
+
+
+    }
 }
+
+
 
 
 
