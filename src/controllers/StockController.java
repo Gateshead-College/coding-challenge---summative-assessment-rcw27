@@ -1,7 +1,10 @@
 package controllers;
 
 import models.Stock;
+import models.User;
+import views.LoginView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +14,7 @@ public class StockController {
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_CYAN = "\u001B[36m";
+    private static User[] users;
 
     Scanner scn = new Scanner(System.in);
     ArrayList<Stock> phones = new ArrayList();
@@ -18,8 +22,10 @@ public class StockController {
     public static void main(String[] args) {
         StockController m = new StockController();
         m.Startup();
-        m.printMenu();
+        m.logIn();
+        m.createUsers();
     }
+
 
     private void Startup() {
 
@@ -28,6 +34,58 @@ public class StockController {
         phones.add(new Stock(448, "Apple", 389.76, 8, "iPhone SE"));
 
     }
+
+
+    private void createUsers() {
+        ArrayList<Object> users = new ArrayList<>();
+        users.add(new User("Jan", "Lewis", 1234, "JLew1", "JanPass1", true));
+        users.add(new User("Fran", "Brewis", 1235, "FBrew1", "FranPass1", false));
+        users.add(new User("Stan", "Chewis", 1236, "SChew1", "StanPass1", false));
+
+    }
+
+    private String username = "";
+    private String password = "";
+
+    public void getUsername() {
+        username = new Scanner(System.in).nextLine();
+    }
+
+    public void getPassword() {
+        password = new Scanner(System.in).nextLine();
+    }
+
+    public boolean checkDetails() {
+        for (User u : StockController.users) {
+            if (u.getUsername().equalsIgnoreCase(username) &&
+                    u.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void logIn() {
+        StockController sc = new StockController();
+
+        System.out.println(ANSI_BLUE + "Hi, Welcome to The Phone Shop data system" + ANSI_RESET );
+        System.out.println();
+        System.out.println("Please input your Username to continue");
+        sc.getUsername();
+        System.out.println("Please input your Password to continue");
+        sc.getPassword();
+        if(sc.checkDetails()){
+            System.out.println("Details Accepted");
+            System.out.println();
+            System.out.println();
+        }
+        else {
+            System.out.println("Incorrect Username and/or Password, please try again.");
+            logIn();
+        }
+
+    }
+
 
     private void printMenu() {
 
