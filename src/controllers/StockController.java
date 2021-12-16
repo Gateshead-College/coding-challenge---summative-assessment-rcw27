@@ -16,13 +16,13 @@ public class StockController {
 
     Scanner scn = new Scanner(System.in);
     ArrayList<Stock> phones = new ArrayList();
+    User currentUser;
 
-    public static void main(String[] args) {
-        StockController m = new StockController();
-        m.Startup();
-        m.createUsers();
+    public StockController(User currentUser) {
+        this.currentUser = currentUser;
+        Startup();
+        printMenu();
     }
-
 
     private void Startup() {
 
@@ -32,16 +32,6 @@ public class StockController {
 
     }
 
-
-    private void createUsers() {
-        users = new ArrayList<>();
-        users.add(new User("Jan", "Lewis", 1234, "JLew1", "JanPass1", true));
-        users.add(new User("Fran", "Brewis", 1235, "FBrew1", "FranPass1", false));
-        users.add(new User("Stan", "Chewis", 1236, "SChew1", "StanPass1", false));
-        LoginView lv = new LoginView();
-        lv.displayLoginScreen();
-
-    }
 
     void printMenu() {
 
@@ -70,13 +60,10 @@ public class StockController {
             case 3:
                 printStockEditMenu();
             case 4:
-                printStockRemoveMenu();
-            case 5:
-                System.out.println(ANSI_RED + "This option is still under construction, please try again later."
-                        + ANSI_RESET);
-                System.out.println();
-                System.out.println();
+                System.out.println("Still under construction. Please try again later");
                 printMenu();
+            case 5:
+                printStockRemoveMenu();
             case 6:
                 System.exit(0);
 
@@ -332,17 +319,29 @@ public class StockController {
     }
 
     private void removePhone(Stock selectedPhone) {
-        System.out.println("Are you sure you want to delete" + selectedPhone + "from the system? Y/N");
+        System.out.println("Are you sure you want to delete " + selectedPhone.phoneName + " from the system? Y/N");
 
         if (scn.nextLine().equalsIgnoreCase("Y")) {
             phones.remove(selectedPhone);
-            System.out.println(selectedPhone + "has now been updated.");
+            System.out.println(selectedPhone.phoneName + " has now been updated.");
             System.out.println();
             System.out.println();
+            System.out.println("Would you like to delete another product? Y/N");
+            System.out.println("If no you will be returned to the main menu.");
+            System.out.println();
+
+            if (scn.nextLine().equalsIgnoreCase("Y")) {
+                System.out.println();
+                printStockRemoveMenu();
+            } else {
+                System.out.println();
+                printMenu();
+            }
         } else {
             System.out.println("Changes not saved.");
+            System.out.println("Returning to main menu.");
             System.out.println();
-            System.out.println();
+            printMenu();
         }
 
 
